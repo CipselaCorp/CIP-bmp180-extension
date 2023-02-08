@@ -95,7 +95,8 @@ namespace BMP180 {
         X2 = (-7357 * _p) / (1 << 16);
         P = _p + (X1 + X2 + 3791) / 16;
         divi = P/seallevelPressure
-        conv3 = divi**0.1903
+
+        conv3 = (divi*1000)**0.1903
         //A = conv1 * (1.0 - divi ** conv2)
         A = conv3
     }
