@@ -62,6 +62,7 @@ namespace BMP180 {
     let divi = 0
     let conv1 = 44330
     let conv2 = 0.1903
+    let conv3 = 0
 
     function measure(): void {
         setreg(0xF4, 0x2E)
@@ -94,8 +95,9 @@ namespace BMP180 {
         X2 = (-7357 * _p) / (1 << 16);
         P = _p + (X1 + X2 + 3791) / 16;
         divi = P/seallevelPressure
+        conv3 = divi**conv2
         //A = conv1 * (1.0 - divi ** conv2)
-        A = divi
+        A = conv3
     }
 
     /**
