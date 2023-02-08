@@ -59,6 +59,9 @@ namespace BMP180 {
     let _p = 0
     let seallevelPressure = 101325
     let A = 0
+    let divi = 0
+    let conv1 = 44330
+    let conv2 = 0.1903
 
     function measure(): void {
         setreg(0xF4, 0x2E)
@@ -90,7 +93,8 @@ namespace BMP180 {
         X1 = Math.idiv((X1 * 3038), (1 << 16))
         X2 = Math.idiv((-7357 * _p), (1 << 16))
         P = _p + Math.idiv(X1 + X2 + 3791, 16)
-        A = 44330 * (1.0 - Math.pow(P / seallevelPressure, 0.1903));
+        divi = Math.idiv(P, seallevelPressure)
+        A = Math.round(conv1 * (1.0 - Math.pow(divi,conv2)))
     }
 
     /**
