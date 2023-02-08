@@ -120,6 +120,7 @@ namespace BMP180 {
 
     export function alt(): number {
         get();
+        press()
         A = 44330 * (1.0 - Math.pow(P / seallevelPressure , 0.1903));
         return A;
     }
