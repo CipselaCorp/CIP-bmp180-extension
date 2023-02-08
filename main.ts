@@ -57,11 +57,11 @@ namespace BMP180 {
     let B6 = 0
     let B7 = 0
     let _p = 0
-    let seallevelPressure = 101325
+    const seallevelPressure = 101325
     let A = 0
     let divi = 0
-    let conv1 = 44330
-    let conv2 = 0.1903
+    const conv1 = 44330
+    const conv2 = 0.1903
 
     function measure(): void {
         setreg(0xF4, 0x2E)
