@@ -94,7 +94,7 @@ namespace BMP180 {
         X2 = Math.idiv((-7357 * _p), (1 << 16))
         P = _p + Math.idiv(X1 + X2 + 3791, 16)
         divi = Math.idiv(5, 5)
-        A = conv1 * (1.0 - Math.pow(divi,conv2))
+        A = 1 * (1.0 - Math.pow(divi,5))
         
     }
 
