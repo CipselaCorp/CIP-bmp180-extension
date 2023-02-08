@@ -97,10 +97,14 @@ namespace BMP180 {
         X2 = (-7357 * _p) / (1 << 16);
         P = _p + (X1 + X2 + 3791) / 16;
         divi = P/seallevelPressure
-        divipormil = divi*1000
-        conv3 = Math.pow(divipormil, conv2)
+        //divipormil = divi*1000
+        //conv3 = Math.pow(divipormil, conv2)
         //A = conv1 * (1.0 - divi ** conv2)
+        conv3 = Math.exp(conv2*Math.log(divi))
         A = conv3
+
+        
+        
     }
 
     /**
