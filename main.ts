@@ -7,7 +7,7 @@
 /**
  * BMP180 block
  */
-//% weight=100 color=#30A0C0 icon="\uf042" block="CIPBMP180"
+//% weight=100 color=#30A0C0 icon="\uf042" block="BMP180"
 namespace BMP180 {
     let BMP180_I2C_ADDR = 0x77;
 
@@ -58,9 +58,7 @@ namespace BMP180 {
     let B7 = 0
     let _p = 0
     let seallevelPressure = 101325
-    let a = 0
-    let divi = 0
-    let ap = P
+    let A = 0
 
     function measure(): void {
         setreg(0xF4, 0x2E)
@@ -92,9 +90,6 @@ namespace BMP180 {
         X1 = Math.idiv((X1 * 3038), (1 << 16))
         X2 = Math.idiv((-7357 * _p), (1 << 16))
         P = _p + Math.idiv(X1 + X2 + 3791, 16)
-        ap = P
-        divi = Math.idiv(ap, seallevelPressure)
-        a = 44330 * (1.0 - Math.pow(divi, 0.1903))
     }
 
     /**
@@ -117,15 +112,9 @@ namespace BMP180 {
         return P;
     }
 
-    /**
-     * get altitude
-     */
-    //% blockId="BMP180_GET_ALTITUDE" block="altitude"
-    //% weight=80 blockGap=8
-    export function altitude(): number {
-        get();     
-        return a;
-        
-        
+    export function alt(): number {
+        get();
+        A = 44330 * (1.0 - Math.pow(P / seallevelPressure , 0.1903));
+        return A;
     }
 }
