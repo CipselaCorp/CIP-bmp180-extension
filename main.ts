@@ -60,6 +60,7 @@ namespace BMP180 {
     let seallevelPressure = 101325
     let a = 0
     let divi = 0
+    let ap = P
 
     function measure(): void {
         setreg(0xF4, 0x2E)
@@ -91,7 +92,9 @@ namespace BMP180 {
         X1 = Math.idiv((X1 * 3038), (1 << 16))
         X2 = Math.idiv((-7357 * _p), (1 << 16))
         P = _p + Math.idiv(X1 + X2 + 3791, 16)
-        
+        ap = P
+        divi = Math.idiv(ap, seallevelPressure)
+        a = 44330 * (1.0 - Math.pow(divi, 0.1903))
     }
 
     /**
@@ -120,9 +123,7 @@ namespace BMP180 {
     //% blockId="BMP180_GET_ALTITUDE" block="altitude"
     //% weight=80 blockGap=8
     export function altitude(): number {
-        get();
-        divi = Math.idiv(P, seallevelPressure)
-        a = 44330 * (1.0 - Math.pow(divi, 0.1903))
+        get();     
         return a;
         
         
