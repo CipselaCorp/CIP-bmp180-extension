@@ -101,7 +101,7 @@ namespace BMP180 {
         //conv3 = Math.pow(divipormil, conv2)
         //A = conv1 * (1.0 - divi ** conv2)
         conv3 = Math.exp(conv2*Math.log(divi))
-        A = conv3
+        A = conv1 - (1.0 - conv3)
 
         
         
