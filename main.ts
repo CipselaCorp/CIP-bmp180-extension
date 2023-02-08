@@ -123,7 +123,7 @@ namespace BMP180 {
     //% blockId="BMP180_GET_ALTITUDE" block="altitude"
     //% weight=80 blockGap=8
 
-    export function alt() {
+    export function alt(): number {
         get();
         return A;
     }
