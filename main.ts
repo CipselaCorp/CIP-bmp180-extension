@@ -63,6 +63,7 @@ namespace BMP180 {
     let conv1 = 44330
     let conv2 = 0.1903
     let conv3 = 0
+    typeof (conv3)
     let divipormil = 0
 
     function measure(): void {
