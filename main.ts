@@ -7,7 +7,7 @@
 /**
  * BMP180 block
  */
-//% weight=100 color=#30A0C0 icon="\uf042" block="BMP180"
+//% weight=100 color=#30A0C0 icon="\uf042" block="CIPBMP180"
 namespace BMP180 {
     let BMP180_I2C_ADDR = 0x77;
 
@@ -64,7 +64,7 @@ namespace BMP180 {
     let conv2 = 0.1903
     let conv3 = 0
     typeof (conv3)
-    let divipormil = 0
+    
 
     function measure(): void {
         setreg(0xF4, 0x2E)
@@ -97,9 +97,6 @@ namespace BMP180 {
         X2 = (-7357 * _p) / (1 << 16);
         P = _p + (X1 + X2 + 3791) / 16;
         divi = P/seallevelPressure
-        //divipormil = divi*1000
-        //conv3 = Math.pow(divipormil, conv2)
-        //A = conv1 * (1.0 - divi ** conv2)
         conv3 = Math.exp(conv2*Math.log(divi))
         A = conv1 * (1.0 - conv3)
 
