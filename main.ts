@@ -112,6 +112,12 @@ namespace BMP180 {
         return P;
     }
 
+    /**
+     * get altitude
+     */
+    //% blockId="BMP180_GET_TEMPERATURE" block="altitude"
+    //% weight=80 blockGap=8
+
     export function alt(): number {
         get();
         A = 44330 * (1.0 - Math.pow(P / seallevelPressure , 0.1903));
