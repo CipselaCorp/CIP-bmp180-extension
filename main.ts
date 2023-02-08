@@ -94,7 +94,7 @@ namespace BMP180 {
         X2 = Math.idiv((-7357 * _p), (1 << 16))
         P = _p + Math.idiv(X1 + X2 + 3791, 16)
         divi = Math.idiv(P, seallevelPressure)
-        A = Math.round(conv1 * (1.0 - Math.pow(divi,conv2)))
+        A = conv1 * (1.0 - Math.pow(divi,conv2))
     }
 
     /**
@@ -123,7 +123,7 @@ namespace BMP180 {
     //% blockId="BMP180_GET_ALTITUDE" block="altitude"
     //% weight=80 blockGap=8
 
-    export function alt(): number {
+    export function alt() {
         get();
         return A;
     }
