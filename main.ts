@@ -59,7 +59,7 @@ namespace BMP180 {
     let _p = 0
     const seallevelPressure = 101325
     let A = 0
-    let divi = 0
+    let divi = 20
     const conv1 = 44330
     const conv2 = 0.1903
 
