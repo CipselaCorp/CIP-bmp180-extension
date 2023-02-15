@@ -11,6 +11,14 @@
 namespace BMP180 {
     let BMP180_I2C_ADDR = 0x77;
 
+    function trunc_bmp(x: number, posiciones: number): number {
+        let s = x.toString()
+        let l = s.length
+        let decimalLength = s.indexOf('.') + 1
+        let numStr = s.substr(0, decimalLength + posiciones)
+        return parseFloat(numStr)
+    }
+
     function setreg(reg: number, dat: number): void {
         let buf = pins.createBuffer(2);
         buf[0] = reg;
@@ -111,7 +119,7 @@ namespace BMP180 {
     //% weight=80 blockGap=8
     export function temperature(): number {
         get();
-        return T;
+        return trunc_bmp(T, 2);
     }
 
     /**
@@ -121,7 +129,7 @@ namespace BMP180 {
     //% weight=80 blockGap=8
     export function press(): number {
         get();
-        return P;
+        return trunc_bmp(P, 2);
     }
 
     /**
@@ -132,7 +140,7 @@ namespace BMP180 {
 
     export function alt(): number {
         get();
-        return A;
+        return trunc_bmp(A, 2);
     }
     
 }
